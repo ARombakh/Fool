@@ -9,14 +9,14 @@ package fool;
  * @author artyom
  */
 public class Controller {
-    public CardList cardlist;
+    public Beat beat;
     
-    public Controller() {
-        this.cardlist = new CardList();
+    public Controller(Beat beat) {
+        this.beat = beat;
     }
     
     @Override
     public String toString() {
-        return cardlist.toString();
+        return beat.toString();
     }
 }

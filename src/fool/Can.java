@@ -11,8 +11,8 @@ package fool;
 public class Can {
     public Beat beat;
     
-    public Can(int attack) {
-        this.beat = new Beat(attack);
+    public Can(Beat beat) {
+        this.beat = beat;
     }
     
     public void defend(int defend) {

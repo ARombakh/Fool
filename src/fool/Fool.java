@@ -23,45 +23,40 @@ public class Fool {
         System.out.println(board.toString());
         
         Turn turn = new Turn(board);
-        
-        Controller controller = new Controller();
-        
-        for (Beat beat : turn.preboard.beats) {
-            controller.cardlist.cards.add(beat.attack);
-        }
 
         CardList hand = new CardList();
         
         hand.cards.add(1);
         hand.cards.add(9);
         hand.cards.add(10);
+        hand.cards.add(11);
         hand.cards.add(13);
         
-        Controller2 controller2 = new Controller2();
+        System.out.println(turn.preboard.toString());
         
-        controller2.attackcards = controller.cardlist;
+        for (Beat beat : turn.preboard.beats) {
+            Controller controller = new Controller(beat);
 
-        ArrayDef arraydef = new ArrayDef();
+            ArrayDef arraydef = new ArrayDef();
 
-        Can can = new Can(controller2.attackcards.cards.get(0));
-        
-        for (Integer card : hand.cards) {
-            controller2.cardtest = card;
-            can.beat.defend = controller2.cardtest;
+            Can can = new Can(controller.beat);
 
-            if (can.able()) {
-                arraydef.defend.cards.add(controller2.cardtest);
+            for (Integer card : hand.cards) {
+                can.beat.defend = card;
+                
+                if (can.able()) {
+                    arraydef.defend.cards.add(card);
+                }
             }
+
+            System.out.println(arraydef.toString());
+
+            AskCard askcard = new AskCard(arraydef.defend);
+
+            beat.defend = 
+                    hand.extractCard(askcard.chooseCard());
+
+            System.out.println(turn.preboard.toString());
         }
-        
-        System.out.println(arraydef.toString());
-        
-        AskCard askcard = new AskCard(arraydef.defend);
-        
-        hand.extractCard(askcard.chooseCard());
-        
-        System.out.println("Hand Left");
-        
-        System.out.println(hand.toString());
     }
 }
