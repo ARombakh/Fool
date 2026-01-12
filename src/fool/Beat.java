@@ -14,6 +14,7 @@ public class Beat {
     
     public Beat(int attack) {
         this.attack = attack;
+        this.defend = 0;
     }
     
     public String toString() {

@@ -29,32 +29,17 @@ public class Fool {
         hand.cards.add(1);
         hand.cards.add(9);
         hand.cards.add(10);
-        hand.cards.add(11);
         hand.cards.add(13);
-        
-        System.out.println(turn.preboard.toString());
-        
+
         for (Beat beat : turn.preboard.beats) {
-            Controller controller = new Controller(beat);
+            Controller controller = new Controller(beat.attack);
 
-            ArrayDef arraydef = new ArrayDef();
-
-            Can can = new Can(controller.beat);
-
-            for (Integer card : hand.cards) {
-                can.beat.defend = card;
-                
-                if (can.able()) {
-                    arraydef.defend.cards.add(card);
-                }
+            try {
+                beat.defend = controller.pickCard(hand);
+                System.out.println("New beat is:\n" + beat.toString());
+            } catch (Exception e) {
+                System.out.println("Impossible to proceed");
             }
-
-            System.out.println(arraydef.toString());
-
-            AskCard askcard = new AskCard(arraydef.defend);
-
-            beat.defend = 
-                    hand.extractCard(askcard.chooseCard());
 
             System.out.println(turn.preboard.toString());
         }
