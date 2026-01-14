@@ -27,7 +27,16 @@ public class CardList {
         
         return 0;
     }
-       
+
+    public ArrayList<Integer> copyCards() {
+        ArrayList<Integer> newArray = new ArrayList<>();
+        for (Integer card : cards) {
+            newArray.add(card);
+        }
+        
+        return newArray;
+    }
+
     @Override
     public String toString() {
         int i = 0;

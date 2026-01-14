@@ -31,11 +31,14 @@ public class Fool {
         
         Turn turn;
         
-        int i = 0;
+        CardList preHand = new CardList();
         
-        do {
-            turn = new Turn(board, hand);
-            i++;
-        } while (!turn.makeTurn() && i < 5);
+        preHand.cards = hand.copyCards();
+        turn = new Turn(board, preHand);
+        try {
+            turn.makeTurn();
+        } catch (Exception e) {
+            
+        }
     }
 }
