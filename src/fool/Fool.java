@@ -21,8 +21,6 @@ public class Fool {
         board.beats.add(new Beat(12));
 
         System.out.println(board.toString());
-        
-        Turn turn = new Turn(board);
 
         CardList hand = new CardList();
         
@@ -30,18 +28,14 @@ public class Fool {
         hand.cards.add(9);
         hand.cards.add(10);
         hand.cards.add(13);
-
-        for (Beat beat : turn.preboard.beats) {
-            Controller controller = new Controller(beat.attack);
-
-            try {
-                beat.defend = controller.pickCard(hand);
-                System.out.println("New beat is:\n" + beat.toString());
-            } catch (Exception e) {
-                System.out.println("Impossible to proceed");
-            }
-
-            System.out.println(turn.preboard.toString());
-        }
+        
+        Turn turn;
+        
+        int i = 0;
+        
+        do {
+            turn = new Turn(board, hand);
+            i++;
+        } while (!turn.makeTurn() && i < 5);
     }
 }
