@@ -4,49 +4,75 @@
  */
 package fool;
 
+import fool.Fool;
 import static fool.Fool.CARDS_HAND;
 import static fool.Fool.PLAYERS_QTY;
+import java.util.ArrayList;
 import java.util.Random;
+import java.util.Scanner;
 
 /**
  *
  * @author artyom
  */
 public class Controller {
-    public static void main(String[] args) {
-        Deck deck = new Deck();
-        Player[] players = new Player[PLAYERS_QTY];
+    public Deck deck;
+    public Player[] players;
+    
+    public Controller(Deck deck, Player[] players) {
+        this.deck = deck;
+        this.players = players;
+    }
+    
+    public void implementTurn(int playerIX) {        
+        ArrayList<Beat> beats = new ArrayList<>();
         
-        for (int i = 0; i < PLAYERS_QTY; i++) {
-            players[i] = new Player();
+        int card = 0;
+        
+        card = goWithCard(playerIX);
+        
+        Beat beat = new Beat(card);
+        
+        int nextPlayerIX = Fool.nextPlayer(playerIX);
+        
+        card = goWithCard(nextPlayerIX, card);
+        
+        beat.defend = card;
+        
+        beats.add(beat);
+    }
+
+    public int goWithCard(int playerIX) {
+        boolean extractSuccess = false;
+        int cardToGo = 0;
+        Scanner sc = new Scanner(System.in);
+        while (!extractSuccess) {            
+            System.out.printf("Extract card, player %d:\n", playerIX);
+            cardToGo = sc.nextInt();
+            extractSuccess = players[playerIX].cards.extractCard(cardToGo);
+            if(!extractSuccess) {
+                System.out.println("No such card.");
+            }
+        }
+        
+        return cardToGo;
+    }
+    
+    public int goWithCard(int playerIX, int attackCard) {
+        boolean fitCard = false;
+        int cardToGo = 0;
+
+        while (!fitCard) {            
+            System.out.println("Choose card to defend:");
+            cardToGo = goWithCard(playerIX);
+            if (cardToGo < attackCard) {
+                fitCard = false;
+                System.out.println("You cannot beat with this card!");
+            } else {
+                fitCard = true;
+            }
         }
 
-        for (Integer card : deck.cards.cards) {
-            System.out.println(card);
-        }
-        
-        System.out.println("");
-        
-        Random rand = new Random();
-        
-        int randCard;
-
-        for (int i = 0; i < CARDS_HAND; i++) {
-            randCard = rand.nextInt(0, deck.getSize());
-            System.out.println(deck.cards.cards.get(randCard));
-            players[0].takeCard(deck.cards.cards.remove(randCard));
-        }
-
-        System.out.println("");
-        
-        for (Integer card : deck.cards.cards) {
-            System.out.println(card);
-        }
-        
-        System.out.println("");
-
-        for (Integer card : players[0].cards.cards) {
-            System.out.println(card);
-        }
+        return cardToGo;
     }
 }

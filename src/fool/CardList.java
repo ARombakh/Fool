@@ -17,12 +17,15 @@ public class CardList {
         this.cards = new ArrayList<>();
     }
     
-    public void extractCard(int card) {
+    public boolean extractCard(int card) {
         for (int i = 0; i < cards.size(); i++) {
             if (cards.get(i) == card) {
                 cards.remove(i);
+                return true;
             }
         }
+        
+        return false;
     }
     
     public void addCard(int card) {

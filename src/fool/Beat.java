@@ -11,4 +11,8 @@ package fool;
 public class Beat {
     public int attack;
     public int defend;
+    
+    public Beat (int attack) {
+        this.attack = attack;
+    }
 }
