@@ -43,6 +43,7 @@ public class Controller {
             }
 
             Beat beat = new Beat(card);
+            beats.add(beat);
             
             System.out.println("Player " + nextPlayerIX + " cards:");
             System.out.println(players[nextPlayerIX].toString());
@@ -62,9 +63,7 @@ public class Controller {
                 return false;
             }
 
-            beat.defend = card;
-
-            beats.add(beat);
+            beats.getLast().defend = card;
             
             for (Beat beat1 : beats) {
                 System.out.printf("%s\n", beat1.toString());
