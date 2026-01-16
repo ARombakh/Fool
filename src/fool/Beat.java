@@ -15,4 +15,8 @@ public class Beat {
     public Beat (int attack) {
         this.attack = attack;
     }
+    
+    public String toString() {
+        return "Attacking " + attack + ". Defending " + defend + "\n";
+    }
 }

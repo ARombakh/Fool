@@ -24,22 +24,46 @@ public class Controller {
         this.players = players;
     }
     
-    public void implementTurn(int playerIX) {        
+    public ArrayList<Beat> implementTurn(int playerIX) {        
         ArrayList<Beat> beats = new ArrayList<>();
         
         int card = 0;
-        
-        card = goWithCard(playerIX);
-        
-        Beat beat = new Beat(card);
-        
         int nextPlayerIX = Fool.nextPlayer(playerIX);
         
-        card = goWithCard(nextPlayerIX, card);
-        
-        beat.defend = card;
-        
-        beats.add(beat);
+        while (true) {
+            System.out.println("Player " + playerIX + " cards:");
+            System.out.println(players[playerIX].toString());
+            card = goWithCard(playerIX);
+
+            if (card == 0) {
+                return beats;
+            }
+
+            Beat beat = new Beat(card);
+            
+            System.out.println("Player " + nextPlayerIX + " cards:");
+            System.out.println(players[nextPlayerIX].toString());
+
+            card = goWithCard(nextPlayerIX, card);
+
+            if (card == 0) {
+                for (Beat beat1 : beats) {
+                    players[nextPlayerIX].takeCard(beat1.attack);
+                    if (beat1.defend != 0) {
+                        players[nextPlayerIX].takeCard(beat1.defend);
+                    }
+                }
+                return beats;
+            }
+
+            beat.defend = card;
+
+            beats.add(beat);
+            
+            for (Beat beat1 : beats) {
+                System.out.printf("%s\n", beat1.toString());
+            }
+        }
     }
 
     public int goWithCard(int playerIX) {
@@ -49,6 +73,9 @@ public class Controller {
         while (!extractSuccess) {            
             System.out.printf("Extract card, player %d:\n", playerIX);
             cardToGo = sc.nextInt();
+            if (cardToGo == 0) {
+                return 0;
+            }
             extractSuccess = players[playerIX].cards.extractCard(cardToGo);
             if(!extractSuccess) {
                 System.out.println("No such card.");
@@ -65,6 +92,9 @@ public class Controller {
         while (!fitCard) {            
             System.out.println("Choose card to defend:");
             cardToGo = goWithCard(playerIX);
+            if (cardToGo == 0) {
+                return 0;
+            }
             if (cardToGo < attackCard) {
                 fitCard = false;
                 System.out.println("You cannot beat with this card!");

@@ -28,4 +28,9 @@ public class Deck {
     public int getSize() {
         return cards.cards.size();
     }
+    
+    @Override
+    public String toString() {
+        return "Deck:\n" + cards.toString();
+    }
 }

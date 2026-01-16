@@ -24,4 +24,9 @@ public class Player {
     public void attackWithCard(int card) {
         cards.extractCard(card);
     }
+    
+    @Override
+    public String toString() {
+        return cards.toString();
+    }
 }

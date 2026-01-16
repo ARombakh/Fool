@@ -31,4 +31,14 @@ public class CardList {
     public void addCard(int card) {
         cards.add(card);
     }
+    
+    @Override
+    public String toString() {
+        String output = "";
+        for (Integer card : cards) {
+            output += card + "\n";
+        }
+        
+        return output;
+    }
 }

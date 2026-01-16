@@ -4,6 +4,7 @@
  */
 package fool;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 /**
@@ -30,32 +31,42 @@ public class Fool {
             players[i] = new Player();
         }
 
-        for (Integer card : deck.cards.cards) {
-            System.out.println(card);
-        }
+        System.out.println(deck.toString());
         
         System.out.println("");
         
         Random rand = new Random();
         
         int randCard;
+        int j;
 
         for (int i = 0; i < CARDS_HAND; i++) {
-            randCard = rand.nextInt(0, deck.getSize());
-            System.out.println(deck.cards.cards.get(randCard));
-            players[0].takeCard(deck.cards.cards.remove(randCard));
-        }
-
-        System.out.println("");
-        
-        for (Integer card : deck.cards.cards) {
-            System.out.println(card);
+            for (j = 0; j < PLAYERS_QTY; j++) {
+                randCard = rand.nextInt(0, deck.getSize());
+                players[j].takeCard(deck.cards.cards.remove(randCard));
+            }
         }
         
         System.out.println("");
+        
+        System.out.println(players[0].toString());
+        
+        System.out.println("");
+        
+        System.out.println(players[1].toString());
 
-        for (Integer card : players[0].cards.cards) {
-            System.out.println(card);
-        }    
+        System.out.println("");
+        
+        System.out.println(deck.toString());
+        
+        System.out.println("");
+        
+        Controller controller = new Controller(deck, players);
+        
+        ArrayList<Beat> beats = controller.implementTurn(0);
+        
+        for (Beat beat : beats) {
+            System.out.print(beat.toString());
+        }
     }
 }
