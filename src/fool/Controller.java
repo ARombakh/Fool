@@ -98,6 +98,7 @@ public class Controller {
             if (cardToGo < attackCard) {
                 fitCard = false;
                 System.out.println("You cannot beat with this card!");
+                players[playerIX].takeCard(cardToGo);
             } else {
                 fitCard = true;
             }

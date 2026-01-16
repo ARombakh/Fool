@@ -49,10 +49,12 @@ public class Fool {
         
         System.out.println("");
         
+        System.out.println("Player 0:");
         System.out.println(players[0].toString());
         
         System.out.println("");
-        
+
+        System.out.println("Player 1:");        
         System.out.println(players[1].toString());
 
         System.out.println("");
@@ -68,5 +70,46 @@ public class Fool {
         for (Beat beat : beats) {
             System.out.print(beat.toString());
         }
+       
+        System.out.println("");
+        
+        System.out.println("Player 0:");
+        System.out.println(players[0].toString());
+        
+        System.out.println("");
+        
+        System.out.println("Player 1:");
+        System.out.println(players[1].toString());
+
+        System.out.println("");
+        
+        for (int i = 0; i < PLAYERS_QTY; i++) {
+            while (players[i].cards.cards.size() < CARDS_HAND &&
+                    !deck.cards.cards.isEmpty()) {
+                randCard = rand.nextInt(0, deck.getSize());
+                players[i].takeCard(deck.cards.cards.remove(randCard));
+            }
+        }
+        
+        /*
+        ArrayList<ArrayList<Integer>> wonPlayers = new ArrayList<>();
+        
+        for (int i = 0; i < PLAYERS_QTY; i++) {
+            if (players[i].cards.cards.isEmpty()) {
+                wonPlayers.getLast().add(i);
+            }
+        }*/
+        
+        System.out.println("");
+        
+        System.out.println("Player 0:");
+        System.out.println(players[0].toString());
+        
+        System.out.println("");
+        
+        System.out.println("Player 1:");
+        System.out.println(players[1].toString());
+
+        System.out.println("");
     }
 }

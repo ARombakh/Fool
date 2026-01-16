@@ -5,6 +5,8 @@
 package fool;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 
 /**
  *
@@ -19,6 +21,7 @@ public class Player {
     
     public void takeCard(int card){
         cards.addCard(card);
+        Collections.sort(cards.cards);
     }
     
     public void attackWithCard(int card) {
