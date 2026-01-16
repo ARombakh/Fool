@@ -17,6 +17,6 @@ public class Beat {
     }
     
     public String toString() {
-        return "Attacking " + attack + ". Defending " + defend + "\n";
+        return "Attacking " + attack + ". Defending " + defend;
     }
 }

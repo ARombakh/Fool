@@ -68,14 +68,12 @@ public class Fool {
         
         ArrayList<Integer> wonPlayers = new ArrayList<>();
         
+        boolean nextPlayer;
+        
         while (!isGameOver) {            
             Controller controller = new Controller(deck, players);
 
-            ArrayList<Beat> beats = controller.implementTurn(currPlayerIX);
-
-            for (Beat beat : beats) {
-                System.out.print(beat.toString());
-            }
+            nextPlayer = controller.implementTurn(currPlayerIX);
 
             System.out.println("");
 
@@ -118,33 +116,11 @@ public class Fool {
                 isGameOver = true;
             }
             
-            currPlayerIX = nextPlayer(currPlayerIX);
-            
-            System.out.println(deck.toString());
-
-            System.out.println("");
-
-            System.out.println("Player 0:");
-            System.out.println(players[0].toString());
-
-            System.out.println("");
-
-            System.out.println("Player 1:");
-            System.out.println(players[1].toString());
-
-            System.out.println("");
+            if (nextPlayer) {
+                currPlayerIX = nextPlayer(currPlayerIX);
+            } else {
+                currPlayerIX = nextPlayer(nextPlayer(currPlayerIX));
+            }
         }
-        
-        System.out.println("");
-        
-        System.out.println("Player 0:");
-        System.out.println(players[0].toString());
-        
-        System.out.println("");
-        
-        System.out.println("Player 1:");
-        System.out.println(players[1].toString());
-
-        System.out.println("");
     }
 }

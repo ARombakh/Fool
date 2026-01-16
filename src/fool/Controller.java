@@ -24,7 +24,7 @@ public class Controller {
         this.players = players;
     }
     
-    public ArrayList<Beat> implementTurn(int playerIX) {        
+    public boolean implementTurn(int playerIX) {        
         ArrayList<Beat> beats = new ArrayList<>();
         
         int card = 0;
@@ -35,12 +35,12 @@ public class Controller {
             System.out.println(players[playerIX].toString());
             if (players[playerIX].cards.cards.isEmpty()) {
                 System.out.println("Player " + playerIX + " is empty");
-                return beats;
+                return true;
             }
             card = goWithCard(playerIX);
 
             if (card == 0) {
-                return beats;
+                return true;
             }
 
             Beat beat = new Beat(card);
@@ -49,7 +49,7 @@ public class Controller {
             System.out.println(players[nextPlayerIX].toString());
             if (players[nextPlayerIX].cards.cards.isEmpty()) {
                 System.out.println("Player " + nextPlayerIX + " is empty");
-                return beats;
+                return true;
             }
 
             card = goWithCard(nextPlayerIX, card);
@@ -61,7 +61,7 @@ public class Controller {
                         players[nextPlayerIX].takeCard(beat1.defend);
                     }
                 }
-                return beats;
+                return false;
             }
 
             beat.defend = card;
