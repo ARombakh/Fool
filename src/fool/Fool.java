@@ -63,51 +63,76 @@ public class Fool {
         
         System.out.println("");
         
-        Controller controller = new Controller(deck, players);
+        boolean isGameOver = false;
+        int currPlayerIX = 0;
         
-        ArrayList<Beat> beats = controller.implementTurn(0);
-        
-        for (Beat beat : beats) {
-            System.out.print(beat.toString());
-        }
-       
-        System.out.println("");
-        
-        System.out.println("Player 0:");
-        System.out.println(players[0].toString());
-        
-        System.out.println("");
-        
-        System.out.println("Player 1:");
-        System.out.println(players[1].toString());
-
-        System.out.println("");
-        
-        for (int i = 0; i < PLAYERS_QTY; i++) {
-            while (players[i].cards.cards.size() < CARDS_HAND &&
-                    !deck.cards.cards.isEmpty()) {
-                randCard = rand.nextInt(0, deck.getSize());
-                players[i].takeCard(deck.cards.cards.remove(randCard));
-            }
-        }
-
         ArrayList<Integer> wonPlayers = new ArrayList<>();
         
-        for (int i = 0; i < PLAYERS_QTY; i++) {
-            if (players[i].cards.cards.isEmpty()) {
-                wonPlayers.add(i);
+        while (!isGameOver) {            
+            Controller controller = new Controller(deck, players);
+
+            ArrayList<Beat> beats = controller.implementTurn(currPlayerIX);
+
+            for (Beat beat : beats) {
+                System.out.print(beat.toString());
             }
-        }
-        
-        if (!wonPlayers.isEmpty()) {
-            if (wonPlayers.size() > 1) {
-                System.out.printf("Players ");
-                for (Integer wonPlayer : wonPlayers) {
-                    System.out.printf("%d ", wonPlayer);
+
+            System.out.println("");
+
+            System.out.println("Player 0:");
+            System.out.println(players[0].toString());
+
+            System.out.println("");
+
+            System.out.println("Player 1:");
+            System.out.println(players[1].toString());
+
+            System.out.println("");
+
+            for (int i = 0; i < PLAYERS_QTY; i++) {
+                while (players[i].cards.cards.size() < CARDS_HAND &&
+                        !deck.cards.cards.isEmpty()) {
+                    randCard = rand.nextInt(0, deck.getSize());
+                    players[i].takeCard(deck.cards.cards.remove(randCard));
                 }
-                System.out.println("won!");
+            }
+
+            for (int i = 0; i < PLAYERS_QTY; i++) {
+                if (players[i].cards.cards.isEmpty()) {
+                    wonPlayers.add(i);
+                }
+            }
+
+            if (!wonPlayers.isEmpty()) {
+                if (wonPlayers.size() > 1) {
+                    System.out.printf("Players ");
+                    for (Integer wonPlayer : wonPlayers) {
+                        System.out.printf("%d ", wonPlayer);
+                    }
+                    System.out.println("won!");
+                } else {
+                    System.out.printf("Player " + wonPlayers.get(0) +
+                            " won!\n");
+                }
+
+                isGameOver = true;
             }
             
+            currPlayerIX = nextPlayer(currPlayerIX);
+            
+            System.out.println(deck.toString());
+
+            System.out.println("");
+
+            System.out.println("Player 0:");
+            System.out.println(players[0].toString());
+
+            System.out.println("");
+
+            System.out.println("Player 1:");
+            System.out.println(players[1].toString());
+
+            System.out.println("");
         }
         
         System.out.println("");

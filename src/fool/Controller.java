@@ -33,6 +33,10 @@ public class Controller {
         while (true) {
             System.out.println("Player " + playerIX + " cards:");
             System.out.println(players[playerIX].toString());
+            if (players[playerIX].cards.cards.isEmpty()) {
+                System.out.println("Player " + playerIX + " is empty");
+                return beats;
+            }
             card = goWithCard(playerIX);
 
             if (card == 0) {
@@ -43,6 +47,10 @@ public class Controller {
             
             System.out.println("Player " + nextPlayerIX + " cards:");
             System.out.println(players[nextPlayerIX].toString());
+            if (players[nextPlayerIX].cards.cards.isEmpty()) {
+                System.out.println("Player " + nextPlayerIX + " is empty");
+                return beats;
+            }
 
             card = goWithCard(nextPlayerIX, card);
 
@@ -90,7 +98,7 @@ public class Controller {
         int cardToGo = 0;
 
         while (!fitCard) {            
-            System.out.println("Choose card to defend:");
+            System.out.println("Choose card to defend with:");
             cardToGo = goWithCard(playerIX);
             if (cardToGo == 0) {
                 return 0;

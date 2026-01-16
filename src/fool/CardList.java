@@ -36,7 +36,7 @@ public class CardList {
     public String toString() {
         String output = "";
         for (Integer card : cards) {
-            output += card + "\n";
+            output += card + " ";
         }
         
         return output;
