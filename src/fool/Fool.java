@@ -119,10 +119,10 @@ public class Fool {
                 isGameOver = true;
             }
             
-            if (nextPlayer) {
+            currPlayerIX = nextPlayer(currPlayerIX);
+            
+            if (!nextPlayer) {
                 currPlayerIX = nextPlayer(currPlayerIX);
-            } else {
-                currPlayerIX = nextPlayer(nextPlayer(currPlayerIX));
             }
         }
     }
