@@ -90,15 +90,25 @@ public class Fool {
                 players[i].takeCard(deck.cards.cards.remove(randCard));
             }
         }
-        
-        /*
-        ArrayList<ArrayList<Integer>> wonPlayers = new ArrayList<>();
+
+        ArrayList<Integer> wonPlayers = new ArrayList<>();
         
         for (int i = 0; i < PLAYERS_QTY; i++) {
             if (players[i].cards.cards.isEmpty()) {
-                wonPlayers.getLast().add(i);
+                wonPlayers.add(i);
             }
-        }*/
+        }
+        
+        if (!wonPlayers.isEmpty()) {
+            if (wonPlayers.size() > 1) {
+                System.out.printf("Players ");
+                for (Integer wonPlayer : wonPlayers) {
+                    System.out.printf("%d ", wonPlayer);
+                }
+                System.out.println("won!");
+            }
+            
+        }
         
         System.out.println("");
         
