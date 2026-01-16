@@ -12,7 +12,7 @@ import java.util.ArrayList;
  */
 public class Deck {
     public CardList cards;
-    public final static int CARDS_QTY = 14;
+    public final static int CARDS_QTY = 36;
     
     public Deck() {
         this.cards = new CardList();

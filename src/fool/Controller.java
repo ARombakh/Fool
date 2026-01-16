@@ -34,7 +34,6 @@ public class Controller {
             System.out.println("Player " + playerIX + " cards:");
             System.out.println(players[playerIX].toString());
             if (players[playerIX].cards.cards.isEmpty()) {
-                System.out.println("Player " + playerIX + " is empty");
                 return true;
             }
             card = goWithCard(playerIX);
@@ -48,7 +47,6 @@ public class Controller {
             System.out.println("Player " + nextPlayerIX + " cards:");
             System.out.println(players[nextPlayerIX].toString());
             if (players[nextPlayerIX].cards.cards.isEmpty()) {
-                System.out.println("Player " + nextPlayerIX + " is empty");
                 return true;
             }
 
@@ -71,6 +69,7 @@ public class Controller {
             for (Beat beat1 : beats) {
                 System.out.printf("%s\n", beat1.toString());
             }
+            System.out.println("");
         }
     }
 

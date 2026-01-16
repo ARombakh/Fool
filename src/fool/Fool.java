@@ -70,22 +70,25 @@ public class Fool {
         
         boolean nextPlayer;
         
-        while (!isGameOver) {            
-            Controller controller = new Controller(deck, players);
-
-            nextPlayer = controller.implementTurn(currPlayerIX);
+        while (!isGameOver) {
+            System.out.println(deck.getSize());
 
             System.out.println("");
 
-            System.out.println("Player 0:");
+            System.out.println("Player 0 at the start of con:");
             System.out.println(players[0].toString());
 
             System.out.println("");
 
-            System.out.println("Player 1:");
+            System.out.println("Player 1 at the start of con:");
             System.out.println(players[1].toString());
 
             System.out.println("");
+            
+            Controller controller = new Controller(deck, players);
+
+            nextPlayer = controller.implementTurn(currPlayerIX);
+
 
             for (int i = 0; i < PLAYERS_QTY; i++) {
                 while (players[i].cards.cards.size() < CARDS_HAND &&
