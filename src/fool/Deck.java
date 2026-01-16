@@ -24,4 +24,8 @@ public class Deck {
     public void extractCard(int card) {
         cards.extractCard(card);
     }
+    
+    public int getSize() {
+        return cards.cards.size();
+    }
 }

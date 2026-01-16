@@ -4,17 +4,11 @@
  */
 package fool;
 
-import java.util.Random;
-
 /**
  *
  * @author artyom
  */
-public class Fool {
-    public static final int PLAYERS_QTY = 2;
-    public static final int CARDS_HAND = 6;
-    /*
-    public static void main(String[] args) {
-        
-    }*/
+public class Beat {
+    public int attack;
+    public int defend;
 }
