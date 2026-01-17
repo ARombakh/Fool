@@ -71,7 +71,7 @@ public class Fool {
         boolean nextPlayer;
         
         while (!isGameOver) {
-            System.out.println(deck.getSize());
+            System.out.println("Deck size is " + deck.getSize());
 
             System.out.println("");
 
@@ -84,7 +84,7 @@ public class Fool {
             System.out.println(players[1].toString());
 
             System.out.println("");
-            
+
             Controller controller = new Controller(deck, players);
 
             nextPlayer = controller.implementTurn(currPlayerIX);
