@@ -5,6 +5,7 @@
 package fool;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 /**
  *
@@ -21,8 +22,11 @@ public class Deck {
         }
     }
     
-    public void extractCard(int card) {
-        cards.extractCard(card);
+    public int extractRandCard() {
+        Random rand = new Random();
+        int randIX = rand.nextInt(cards.cards.size());
+        System.out.println("Random index " + randIX);
+        return cards.cards.remove(randIX);
     }
     
     public int getSize() {
