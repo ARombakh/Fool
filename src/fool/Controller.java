@@ -33,7 +33,7 @@ public class Controller {
         while (true) {
             System.out.println("Player " + playerIX + " cards:");
             System.out.println(players[playerIX].toString());
-            if (players[playerIX].cards.cards.isEmpty()) {
+            if (players[playerIX].isEmpty()) {
                 return true;
             }
             card = goWithCard(playerIX);
@@ -47,19 +47,14 @@ public class Controller {
             
             System.out.println("Player " + nextPlayerIX + " cards:");
             System.out.println(players[nextPlayerIX].toString());
-            if (players[nextPlayerIX].cards.cards.isEmpty()) {
+            if (players[nextPlayerIX].isEmpty()) {
                 return true;
             }
 
             card = goWithCard(nextPlayerIX, card);
 
             if (card == 0) {
-                for (Beat beat1 : beats) {
-                    players[nextPlayerIX].takeCard(beat1.attack);
-                    if (beat1.defend != 0) {
-                        players[nextPlayerIX].takeCard(beat1.defend);
-                    }
-                }
+                players[nextPlayerIX].takeBeats(beats);
                 return false;
             }
 

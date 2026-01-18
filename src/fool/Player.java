@@ -36,6 +36,19 @@ public class Player {
         }
     }
     
+    public void takeBeats(ArrayList<Beat> beats) {
+        for (Beat beat1 : beats) {
+            takeCard(beat1.attack);
+            if (beat1.defend != 0) {
+                takeCard(beat1.defend);
+            }
+        }
+    }
+    
+    public boolean isEmpty() {
+        return cards.cards.isEmpty();
+    }
+    
     public void attackWithCard(int card) {
         cards.extractCard(card);
     }
