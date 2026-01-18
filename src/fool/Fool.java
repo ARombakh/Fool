@@ -12,7 +12,7 @@ import java.util.Random;
  * @author artyom
  */
 public class Fool {
-    public static final int PLAYERS_QTY = 2;
+    public static final int PLAYERS_QTY = 3;
     public static final int CARDS_HAND = 6;
     
     public static int nextPlayer(int currPlIX) {
@@ -35,13 +35,8 @@ public class Fool {
         
         System.out.println("");
         
-        Random rand = new Random();
-        
-        int randCard;
-        int j;
-
-        for (j = 0; j < PLAYERS_QTY; j++) {
-            players[j].fillHand(deck);
+        for (int i = 0; i < PLAYERS_QTY; i++) {
+            players[i].fillHand(deck);
         }
         
         System.out.println("");
@@ -86,13 +81,12 @@ public class Fool {
 
             nextPlayer = controller.implementTurn(currPlayerIX);
 
-
             for (int i = 0; i < PLAYERS_QTY; i++) {
                 players[i].fillHand(deck);
             }
 
             for (int i = 0; i < PLAYERS_QTY; i++) {
-                if (players[i].cards.cards.isEmpty()) {
+                if (players[i].isEmpty()) {
                     wonPlayers.add(i);
                 }
             }

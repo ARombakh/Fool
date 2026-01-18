@@ -27,8 +27,7 @@ public class Deck {
             return 0;
         }
         Random rand = new Random();
-        int randIX = rand.nextInt(cards.cards.size());
-        return cards.cards.remove(randIX);
+        return cards.cards.remove(rand.nextInt(cards.cards.size()));
     }
     
     public int getSize() {
