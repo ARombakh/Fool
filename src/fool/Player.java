@@ -25,8 +25,14 @@ public class Player {
     }
     
     public void fillHand(Deck deck) {
+        int card = 0;
         for (int i = cards.cards.size(); i < Fool.CARDS_HAND; i++) {
-            takeCard(deck.extractRandCard());
+            card = deck.extractRandCard();
+            if (card == 0) {
+                break;
+            } else {
+                takeCard(card);
+            }
         }
     }
     

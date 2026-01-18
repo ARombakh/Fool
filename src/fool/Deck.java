@@ -23,9 +23,11 @@ public class Deck {
     }
     
     public int extractRandCard() {
+        if (cards.cards.isEmpty()) {
+            return 0;
+        }
         Random rand = new Random();
         int randIX = rand.nextInt(cards.cards.size());
-        System.out.println("Random index " + randIX);
         return cards.cards.remove(randIX);
     }
     

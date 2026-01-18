@@ -40,11 +40,8 @@ public class Fool {
         int randCard;
         int j;
 
-        for (int i = 0; i < CARDS_HAND; i++) {
-            for (j = 0; j < PLAYERS_QTY; j++) {
-                randCard = rand.nextInt(0, deck.getSize());
-                players[j].takeCard(deck.cards.cards.remove(randCard));
-            }
+        for (j = 0; j < PLAYERS_QTY; j++) {
+            players[j].fillHand(deck);
         }
         
         System.out.println("");
@@ -91,11 +88,7 @@ public class Fool {
 
 
             for (int i = 0; i < PLAYERS_QTY; i++) {
-                while (players[i].cards.cards.size() < CARDS_HAND &&
-                        !deck.cards.cards.isEmpty()) {
-                    randCard = rand.nextInt(0, deck.getSize());
-                    players[i].takeCard(deck.cards.cards.remove(randCard));
-                }
+                players[i].fillHand(deck);
             }
 
             for (int i = 0; i < PLAYERS_QTY; i++) {
