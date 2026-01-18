@@ -22,7 +22,7 @@ public class Fool {
             return currPlIX + 1;
         }
     }
-    
+    /*
     public static void main(String[] args) {
         Deck deck = new Deck();
         Player[] players = new Player[PLAYERS_QTY];
@@ -125,5 +125,5 @@ public class Fool {
                 currPlayerIX = nextPlayer(currPlayerIX);
             }
         }
-    }
+    }*/
 }
