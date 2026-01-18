@@ -24,6 +24,12 @@ public class Player {
         Collections.sort(cards.cards);
     }
     
+    public void fillHand(Deck deck) {
+        for (int i = cards.cards.size(); i < Fool.CARDS_HAND; i++) {
+            takeCard(deck.extractRandCard());
+        }
+    }
+    
     public void attackWithCard(int card) {
         cards.extractCard(card);
     }
